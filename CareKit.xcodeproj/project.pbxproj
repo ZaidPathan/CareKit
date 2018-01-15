@@ -169,6 +169,8 @@
 		BAD328671DB024040021A773 /* OCKRingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD328651DB024040021A773 /* OCKRingItem.m */; };
 		BAD3286A1DB028AF0021A773 /* OCKInsightsRingTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BAD328681DB028AF0021A773 /* OCKInsightsRingTableViewCell.h */; };
 		BAD3286B1DB028AF0021A773 /* OCKInsightsRingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD328691DB028AF0021A773 /* OCKInsightsRingTableViewCell.m */; };
+		D86D893B200C91B20019445E /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D8939200C91AB0019445E /* Contact.swift */; };
+		D86D893C200C91B90019445E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D893A200C91AB0019445E /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +380,8 @@
 		BAD328651DB024040021A773 /* OCKRingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCKRingItem.m; sourceTree = "<group>"; };
 		BAD328681DB028AF0021A773 /* OCKInsightsRingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCKInsightsRingTableViewCell.h; sourceTree = "<group>"; };
 		BAD328691DB028AF0021A773 /* OCKInsightsRingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCKInsightsRingTableViewCell.m; sourceTree = "<group>"; };
+		D86D8939200C91AB0019445E /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		D86D893A200C91AB0019445E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -652,6 +656,7 @@
 			children = (
 				8605A5BD1C4F04EC00DD65FF /* CareKit.h */,
 				8677EE241C97771A00588CD6 /* CareKit_Private.h */,
+				D86D8938200C91AB0019445E /* PrivateFiles */,
 				BA155DC71EB1DF7E00DB391F /* Patient */,
 				8677EDF51C9775EB00588CD6 /* CarePlan */,
 				BA660FFB1EB20D9600B7B1A7 /* CareContents */,
@@ -860,6 +865,15 @@
 				BA38457D1D9CA698007990DA /* OCKGlyph.m */,
 			);
 			name = Glyph;
+			sourceTree = "<group>";
+		};
+		D86D8938200C91AB0019445E /* PrivateFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D86D8939200C91AB0019445E /* Contact.swift */,
+				D86D893A200C91AB0019445E /* Message.swift */,
+			);
+			path = PrivateFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1111,6 +1125,7 @@
 				244A92461CA210F7007B42D6 /* OCKTableViewCell.m in Sources */,
 				BA274F411EB6F75300DD17EF /* OCKConnectMessageItem.m in Sources */,
 				242DBA971C9F7F8700529386 /* OCKSymptomTrackerViewController.m in Sources */,
+				D86D893B200C91B20019445E /* Contact.swift in Sources */,
 				BA3793E91EB66D7D0004A540 /* OCKDefaultPatientWidgetView.m in Sources */,
 				BA274F3B1EB6F63400DD17EF /* OCKConnectMessagesViewController.m in Sources */,
 				BA3793E71EB66D7D0004A540 /* OCKBadgePatientWidgetView.m in Sources */,
@@ -1158,6 +1173,7 @@
 				BAD328671DB024040021A773 /* OCKRingItem.m in Sources */,
 				24EA9FBD1C9A3D420036028E /* OCKCareCardTableViewCell.m in Sources */,
 				244A92481CA210F7007B42D6 /* OCKWeekLabelsView.m in Sources */,
+				D86D893C200C91B90019445E /* Message.swift in Sources */,
 				186D42B51D78D8B60083EF5B /* OCKCarePlanThreshold.m in Sources */,
 				8677EE151C9775EB00588CD6 /* OCKCarePlanEventResult.m in Sources */,
 				2489297E1C90E70100EBBE1F /* OCKConnectViewController.m in Sources */,
@@ -1399,6 +1415,7 @@
 		8605A5D21C4F04EC00DD65FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CareKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1413,6 +1430,7 @@
 		8605A5D31C4F04EC00DD65FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CareKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
