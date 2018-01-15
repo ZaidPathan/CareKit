@@ -655,6 +655,8 @@
 			isa = PBXGroup;
 			children = (
 				8605A5BD1C4F04EC00DD65FF /* CareKit.h */,
+				D86D8939200C91AB0019445E /* Contact.swift */,
+				D86D893A200C91AB0019445E /* Message.swift */,
 				8677EE241C97771A00588CD6 /* CareKit_Private.h */,
 				D86D8938200C91AB0019445E /* PrivateFiles */,
 				BA155DC71EB1DF7E00DB391F /* Patient */,
@@ -870,8 +872,6 @@
 		D86D8938200C91AB0019445E /* PrivateFiles */ = {
 			isa = PBXGroup;
 			children = (
-				D86D8939200C91AB0019445E /* Contact.swift */,
-				D86D893A200C91AB0019445E /* Message.swift */,
 			);
 			path = PrivateFiles;
 			sourceTree = "<group>";
