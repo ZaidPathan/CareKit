@@ -35,7 +35,7 @@
 
 #import <CareKit/CareKit.h>
 #import <MessageUI/MessageUI.h>
-#import <CareKit/CareKit-Swift.h>
+
 
 
 NS_ASSUME_NONNULL_BEGIN
