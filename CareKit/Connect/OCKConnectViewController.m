@@ -30,7 +30,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
+#import <CareKit/CareKit-Swift.h>
 #import "OCKConnectViewController.h"
 #import "OCKContact.h"
 #import "OCKConnectDetailViewController.h"
@@ -418,7 +418,7 @@
         viewController.masterViewController = self;
         viewController.contact = [self.dataSource connectViewControllerCareTeamConnections:self][indexPath.row];
         viewController.view.tintColor = UIColor.blueColor;
-        [NSNotificationCenter.defaultCenter postNotificationName: "SelectedContact" object: viewController.contact];
+        [NSNotificationCenter.defaultCenter postNotificationName: @"SelectedContact" object: viewController.contact];
         return viewController;
     } else {
         OCKContact *contact = [self contactForIndexPath:indexPath];

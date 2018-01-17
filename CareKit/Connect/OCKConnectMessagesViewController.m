@@ -28,7 +28,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
+#import <CareKit/CareKit-Swift.h>
 #import "OCKConnectMessagesViewController.h"
 #import "OCKTextView.h"
 #import "OCKConnectMessageTableViewCell.h"
