@@ -45,7 +45,7 @@ static const CGFloat PaddingMargin = 125.0;
     NSMutableArray *_constraints;
 }
 
-- (void)setMessageItem:(OCKConnectMessageItem *)messageItem {
+- (void)setMessageItem:(Message *)messageItem {
     _messageItem = messageItem;
     _usePadding = YES;
     [self prepareView];
@@ -63,7 +63,7 @@ static const CGFloat PaddingMargin = 125.0;
     UIColor *backgroundColor = (type == OCKConnectMessageTypeReceived) ? [UIColor whiteColor] : self.tintColor;
     UIColor *primaryTextColor = (type == OCKConnectMessageTypeReceived) ? [UIColor blackColor] : [UIColor whiteColor];
     UIColor *secondaryTextColor = (type == OCKConnectMessageTypeReceived) ? [UIColor lightGrayColor] : [UIColor lightTextColor];
-    UIColor *bodyTextColor = (type == OCKConnectMessageTypeReceived) ? [UIColor darkGrayColor] : [UIColor lightTextColor];
+    UIColor *bodyTextColor = (type == OCKConnectMessageTypeReceived) ? [UIColor darkGrayColor] : [UIColor colorWithWhite:1.0 alpha:0.8];
     
     if (!_containerView) {
         _containerView = [UIView new];

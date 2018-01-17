@@ -30,7 +30,7 @@
 
 
 #import <CareKit/CareKit.h>
-
+@class Contact;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, nullable) id <OCKConnectViewControllerDelegate> delegate;
 
-@property (nonatomic) OCKContact *contact;
+@property (nonatomic) Contact *contact;
 
 @property (nonatomic, weak) OCKConnectViewController *masterViewController;
 
