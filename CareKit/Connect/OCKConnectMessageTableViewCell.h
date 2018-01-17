@@ -30,11 +30,11 @@
 
 
 #import <CareKit/CareKit.h>
-
+@class Message;
 
 @interface OCKConnectMessageTableViewCell : UITableViewCell
 
-@property (nonatomic) OCKConnectMessageItem *messageItem;
+@property (nonatomic) Message *messageItem;
 
 @property (nonatomic) BOOL usePadding;
 

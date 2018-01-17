@@ -104,6 +104,9 @@ static NSString *EmptyString = @"";
         _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
+        [_tableView registerClass:[OCKConnectMessageTableViewCell self] forCellReuseIdentifier:@"ConnectMessageReceivedCell"];
+        [_tableView registerClass:[OCKConnectMessageTableViewCell self] forCellReuseIdentifier:@"ConnectMessageSentCell"];
+        
         [self.view addSubview:_tableView];
     }
     
@@ -277,7 +280,7 @@ static NSString *EmptyString = @"";
     [_tableView reloadData];
 }
 
-- (void)setContact:(OCKContact *)contact {
+- (void)setContact:(Contact *)contact {
     _contact = contact;
     self.title = _contact.name;
 }

@@ -35,11 +35,12 @@
 
 #import <CareKit/CareKit.h>
 #import <MessageUI/MessageUI.h>
+#import <CareKit/CareKit-Swift.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class OCKContact, OCKConnectViewController, OCKConnectMessageItem;
+@class Contact, OCKConnectViewController, Message;
 
 /**
  An object that adopts the `OCKConnectViewControllerDataSource` protocol can use it provide connect message to be displayed.
@@ -52,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param viewController          The view controller providing the callback.
  */
-- (NSArray<OCKContact *> *)connectViewControllerCareTeamConnections:(OCKConnectViewController *)viewController;
+- (NSArray<Contact *> *)connectViewControllerCareTeamConnections:(OCKConnectViewController *)viewController;
 
 /**
  Asks the data source for a connect message item for a given index.
@@ -64,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param index                   The index of the table view row.
  @param contact                 The care team contact.
  */
-- (OCKConnectMessageItem *)connectViewController:(OCKConnectViewController *)viewController connectMessageItemAtIndex:(NSInteger)index careTeamContact:(OCKContact *)contact;
+- (Message *)connectViewController:(OCKConnectViewController *)viewController connectMessageItemAtIndex:(NSInteger)index careTeamContact:(Contact *)contact;
 
 /**
  Asks the data source for the number of connect message items.
@@ -75,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param viewController          The view controller providing the callback.
  @param contact                 The care team contact.
  */
-- (NSInteger)connectViewControllerNumberOfConnectMessageItems:(OCKConnectViewController *)viewController careTeamContact:(OCKContact *)contact;
+- (NSInteger)connectViewControllerNumberOfConnectMessageItems:(OCKConnectViewController *)viewController careTeamContact:(Contact *)contact;
 @end
 
 /**
@@ -105,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The string that will be displayed in the sharing cell for the contact.
  */
-- (nullable NSString *)connectViewController:(OCKConnectViewController *)connectViewController titleForSharingCellForContact:(OCKContact *)contact;
+- (nullable NSString *)connectViewController:(OCKConnectViewController *)connectViewController titleForSharingCellForContact:(Contact *)contact;
 
 /**
  Asks the delegate to handle the selection of the contact info. This can be used to provide custom handling for
@@ -126,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param message                 The message that is being sent.
  @param contact                 The care team contact the message is being sent to.
  */
-- (void)connectViewController:(OCKConnectViewController *)viewController didSendConnectMessage:(NSString *)message careTeamContact:(OCKContact *)contact;
+- (void)connectViewController:(OCKConnectViewController *)viewController didSendConnectMessage:(NSString *)message careTeamContact:(Contact *)contact;
 
 /**
  Tells the delegate when the user has tapped the profile header.
@@ -170,7 +171,7 @@ OCK_CLASS_AVAILABLE
 /**
  An array of contacts.
  */
-@property (nonatomic, copy, nullable) NSArray<OCKContact *> *contacts;
+@property (nonatomic, copy, nullable) NSArray<Contact *> *contacts;
 
 /**
  A patient object.

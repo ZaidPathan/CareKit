@@ -417,6 +417,8 @@
         viewController.delegate = self.delegate;
         viewController.masterViewController = self;
         viewController.contact = [self.dataSource connectViewControllerCareTeamConnections:self][indexPath.row];
+        viewController.view.tintColor = UIColor.blueColor;
+        [NSNotificationCenter.defaultCenter postNotificationName: "SelectedContact" object: viewController.contact];
         return viewController;
     } else {
         OCKContact *contact = [self contactForIndexPath:indexPath];
