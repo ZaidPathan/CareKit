@@ -323,7 +323,9 @@
         viewController.dataSource = self.dataSource;
         viewController.delegate = self.delegate;
         viewController.masterViewController = self;
+        viewController.view.tintColor = UIColor.blueColor;
         viewController.contact = [self.dataSource connectViewControllerCareTeamConnections:self][indexPath.row];
+         [NSNotificationCenter.defaultCenter postNotificationName:@"SelectedContact" object: viewController.contact];
         [self.navigationController pushViewController:viewController animated:YES];
     } else {
         OCKContact *contact = [self contactForIndexPath:indexPath];
@@ -417,8 +419,6 @@
         viewController.delegate = self.delegate;
         viewController.masterViewController = self;
         viewController.contact = [self.dataSource connectViewControllerCareTeamConnections:self][indexPath.row];
-        viewController.view.tintColor = UIColor.blueColor;
-        [NSNotificationCenter.defaultCenter postNotificationName: @"SelectedContact" object: viewController.contact];
         return viewController;
     } else {
         OCKContact *contact = [self contactForIndexPath:indexPath];
