@@ -56,6 +56,21 @@ static const CGFloat TrailingMargin = 15.0;
     [self prepareView];
 }
 
+-(NSArray *)weekDates:(NSDate *)selectedDate {
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *now = selectedDate;
+    NSDate *startOfTheWeek;
+    NSDate *endOfWeek;
+    NSTimeInterval interval;
+    [cal rangeOfUnit:NSCalendarUnitWeekOfMonth
+           startDate:&startOfTheWeek
+            interval:&interval
+             forDate:now];
+    endOfWeek = [startOfTheWeek dateByAddingTimeInterval:interval-1];
+    
+    return [[NSArray alloc] initWithObjects: startOfTheWeek, endOfWeek, nil];
+}
+
 - (void)prepareView {
     
     if (!UIAccessibilityIsReduceTransparencyEnabled()) {
@@ -75,13 +90,13 @@ static const CGFloat TrailingMargin = 15.0;
         _weekView = [[OCKWeekLabelsView alloc] initWithFrame:CGRectZero];
         _weekView.tintColor = self.ringTintColor;
         [self addSubview:_weekView];
-        
     }
-    
+ 
+
     if (!_ringButtons) {
         _ringButtons = [NSMutableArray new];
         for (int i = 0; i < 7; i++) {
-            OCKRingButton *ringButton = [[OCKRingButton alloc] initWithFrame:CGRectMake(0, 0, RingButtonSize, RingButtonSize)];
+            OCKRingButton *ringButton = [[OCKRingButton alloc] initWithFrame:CGRectMake(0, 0, RingButtonSize , RingButtonSize)];
             
             OCKRingView *ringView = [[OCKRingView alloc] initWithFrame:CGRectMake(0, 25, RingButtonSize + 10, RingButtonSize + 10)
                                                           useSmallRing:YES];
@@ -90,7 +105,6 @@ static const CGFloat TrailingMargin = 15.0;
             ringView.tintColor = self.ringTintColor;
             ringView.isCareCard = self.isCareCard;
             ringView.glyphType = self.glyphType;
-            
             ringButton.ringView = ringView;
             [ringButton addTarget:self
                            action:@selector(updateDayOfWeek:)
@@ -98,7 +112,7 @@ static const CGFloat TrailingMargin = 15.0;
             
             UILabel *dayLabel = (UILabel *)_weekView.weekLabels[i];
             ringButton.accessibilityLabel = [dayLabel accessibilityLabel];
-            
+ 
             [_ringButtons addObject:ringButton];
         }
     }
@@ -106,10 +120,46 @@ static const CGFloat TrailingMargin = 15.0;
     if (!_stackView) {
         _stackView = [[UIStackView alloc] initWithArrangedSubviews:_ringButtons];
         _stackView.distribution = UIStackViewDistributionEqualCentering;
-        [self addSubview:_stackView];
+         [self addSubview:_stackView];
     }
     
     [self setUpConstraints];
+    
+    if(!_weekStartLabel) {
+        
+        _weekStartLabel = [UILabel new];
+        _weekStartLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightBold];
+        _weekStartLabel.layer.cornerRadius = 5.0;
+        _weekStartLabel.clipsToBounds = YES;
+        _weekStartLabel.text = @""; //[df stringFromDate: startDate];
+        _weekStartLabel.textAlignment = NSTextAlignmentLeft;
+        
+        [self addSubview: _weekStartLabel];
+        
+        _weekStartLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [_weekStartLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant: 8].active = YES;;
+        [_weekStartLabel.widthAnchor constraintEqualToAnchor:_weekView.widthAnchor].active = YES;
+        [_weekStartLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:8].active = YES;
+    }
+    
+    if(!_weekEndLabel) {
+        _weekEndLabel = [UILabel new];
+        _weekEndLabel.font = [UIFont systemFontOfSize:12.0 weight:UIFontWeightBold];
+        _weekEndLabel.layer.cornerRadius = 5.0;
+        _weekEndLabel.clipsToBounds = YES;
+        _weekEndLabel.text = @""; //[df stringFromDate: endDate];
+        _weekEndLabel.textAlignment = NSTextAlignmentRight;
+ 
+        
+        [self addSubview: _weekEndLabel];
+         _weekEndLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        [_weekEndLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-8].active = YES;;
+        [_weekEndLabel.widthAnchor constraintEqualToAnchor:_weekView.widthAnchor].active = YES;;
+        [_weekEndLabel.topAnchor constraintEqualToAnchor:self.topAnchor constant:8].active = YES;
+    }
+    
 }
 
 - (void)setUpConstraints {
@@ -127,7 +177,7 @@ static const CGFloat TrailingMargin = 15.0;
                                                                         toItem:self
                                                                      attribute:NSLayoutAttributeTop
                                                                     multiplier:1.0
-                                                                      constant:-TopMargin],
+                                                                      constant:TopMargin],
                                         [NSLayoutConstraint constraintWithItem:_weekView
                                                                      attribute:NSLayoutAttributeLeading
                                                                      relatedBy:NSLayoutRelationEqual
@@ -162,7 +212,7 @@ static const CGFloat TrailingMargin = 15.0;
                                                                         toItem:self
                                                                      attribute:NSLayoutAttributeTop
                                                                     multiplier:1.0
-                                                                      constant:0.0],
+                                                                      constant:30.0],
                                         [NSLayoutConstraint constraintWithItem:_stackView
                                                                      attribute:NSLayoutAttributeBottom
                                                                      relatedBy:NSLayoutRelationEqual
@@ -199,6 +249,19 @@ static const CGFloat TrailingMargin = 15.0;
     
 }
 
+-(void)updateWeekDatesAndLabels:(NSDateComponents *)selectedDate {
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"dd MMM"];
+    
+    NSDate *_date = [NSCalendar.currentCalendar dateFromComponents:selectedDate];
+    
+    NSDate * startDate = [self weekDates:_date][0];
+    NSDate * endDate = [self weekDates:_date][1];
+    
+    _weekStartLabel.text = [df stringFromDate:startDate];
+    _weekEndLabel.text = [df stringFromDate: endDate];
+}
+
 - (void)updateDayOfWeek:(id)sender {
     OCKRingButton *button = (OCKRingButton *)sender;
     NSInteger index = [_ringButtons indexOfObject:button];
@@ -206,7 +269,7 @@ static const CGFloat TrailingMargin = 15.0;
     
     if (self.delegate &&
         [self.delegate respondsToSelector:@selector(weekViewSelectionDidChange:)]) {
-        [self.delegate weekViewSelectionDidChange:self];
+         [self.delegate weekViewSelectionDidChange:self];
     }
 }
 

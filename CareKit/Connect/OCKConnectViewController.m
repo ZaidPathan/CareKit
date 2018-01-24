@@ -333,7 +333,13 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
+    
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section > 0) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -379,6 +385,21 @@
         return cell;
     }
     return nil;
+}
+    
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return indexPath.section > 0;
+}
+    
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSMutableArray *array = [_sectionedContacts[indexPath.section] mutableCopy];
+        [array removeObjectAtIndex:indexPath.row];
+        
+        _sectionedContacts[indexPath.section] = [array copy];
+        
+        [tableView reloadData];
+    }
 }
 
 #pragma mark - MFMessageComposeViewControllerDelegate

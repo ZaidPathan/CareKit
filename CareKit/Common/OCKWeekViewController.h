@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) NSInteger weekIndex;
 
+-(void)updateWeekDates:(NSDateComponents *)dateComponents;
+
 @end
 
 NS_ASSUME_NONNULL_END

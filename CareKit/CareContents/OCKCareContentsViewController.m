@@ -244,7 +244,7 @@
                                                                         toItem:nil
                                                                      attribute:NSLayoutAttributeNotAnAttribute
                                                                     multiplier:1.0
-                                                                      constant:65.0],
+                                                                      constant:120.0], //65
                                         [NSLayoutConstraint constraintWithItem:_headerView
                                                                      attribute:NSLayoutAttributeHeight
                                                                      relatedBy:NSLayoutRelationEqual
@@ -331,6 +331,8 @@
 }
 
 - (void)fetchEventsOfType:(OCKCarePlanActivityType)type {
+    [_weekViewController updateWeekDates:_selectedDate];
+    
     [self.store eventsOnDate:self.selectedDate
                         type:type
                   completion:^(NSArray<NSArray<OCKCarePlanEvent *> *> *eventsGroupedByActivity, NSError *error) {

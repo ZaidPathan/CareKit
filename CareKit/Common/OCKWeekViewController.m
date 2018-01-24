@@ -53,4 +53,7 @@
 
 }
 
+-(void)updateWeekDates:(NSDateComponents *)dateComponents {
+    [_weekView updateWeekDatesAndLabels:dateComponents];
+}
 @end
