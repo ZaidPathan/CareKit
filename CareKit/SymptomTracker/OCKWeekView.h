@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OCKWeekView : UIView
 
+@property (nonatomic, readonly) UILabel * weekStartLabel;
+
+@property (nonatomic, readonly) UILabel * weekEndLabel;
+
 @property (nonatomic, weak, nullable) id<OCKWeekViewDelegate> delegate;
 
 @property (nonatomic, copy) NSArray<NSNumber*> *values;
@@ -51,6 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) OCKGlyphType glyphType;
 
 @property (nonatomic) BOOL isToday;
+
+-(void)updateWeekDatesAndLabels:(NSDateComponents *)selectedDate;
 
 @end
 
