@@ -397,8 +397,7 @@
         [array removeObjectAtIndex:indexPath.row];
         
         _sectionedContacts[indexPath.section] = [array copy];
-        
-        [tableView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DidDeletedContact" object:indexPath];
     }
 }
 

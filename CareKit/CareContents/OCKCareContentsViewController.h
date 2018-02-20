@@ -156,6 +156,11 @@ OCK_CLASS_AVAILABLE
 
 
 /**
+     The value will be currently selected date from scroll event of care control
+ */
+@property (nonatomic) NSDateComponents *selectedDate;
+
+/**
  The last event selected by the user.
  
  This value is nil if no event has been selected yet.
